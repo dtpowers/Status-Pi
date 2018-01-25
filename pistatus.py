@@ -41,7 +41,7 @@ def takePicture():
 
 def generateFilename():
 	time = datetime.datetime.now()
-	return mostRecentStatusID + '.' + time.strftime("%Y-%m-%d.%H.%M.%S") 
+	return str(mostRecentStatusID) + '.' + time.strftime("%Y-%m-%d.%H.%M.%S") 
 
 
 
