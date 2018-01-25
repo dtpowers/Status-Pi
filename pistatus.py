@@ -32,6 +32,7 @@ def takePicture():
 	camera.stop_preview()
 	print ('took picture')
 	#upload to AWS
+	data.seek(0)
 	s3.Bucket('pistatus').put_object(Key=(name), Body=data)
 	print ('uploaded picture: ' + name)
 	#update webserver
