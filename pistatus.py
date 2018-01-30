@@ -22,7 +22,61 @@ def init():
 	#initialize camera object
 	camera = PiCamera()
 	print("Server initialized...")
-	takePicture()
+	shutdown = raw_input("If you want to take a status press anything other than q. To shutdown, press q")
+	while shutdown != 'q':
+		takeStatus()
+		shutdown = raw_input("If you want to take a status press anything other than q. To shutdown, press q")
+	#shutdown server
+	shutdownServer()
+	
+		
+def shutdownServer():
+	print("Shutting down...")
+	saveDB()
+	quit()
+
+def takeStatus():
+	#increase count and generate new entry
+	mostRecentStatusID++
+	#populate with data
+	metrics = getMetrics()
+	time = datetime.datetime.now()
+	metrics['Time'] = time.strftime("%A, %B %-m %Y, %-I:%M %p")
+	
+
+	#take picture, upload, get picture name
+	print("Say cheese!")
+	imageName = takePicture()
+	metrics['image'] = imageName
+	#Add status to db, and write db to disk
+	DATABASE[mostRecentStatusID] = metrics
+	saveDB()
+	print("status added and uploaded!")
+
+
+#ask user for key/value pairs for metrics
+def getMetrics():
+	metrics = {}
+	doBase = raw_input("do you want default metrics y/n")
+	if doBase != 'n' or doBase != 'q':
+		weight = raw_input("Current weight?")
+		sleep = raw_input("how many hours of sleep did you get?")
+	metrics['weight'] = weight	
+	metrics['sleep'] = sleep
+
+	nextMetric = raw_input("Do you want to add any additional metrics? y/n")
+	while (nextMetric != 'q' or nextMetric != 'n'):
+		key = raw_input("Please enter metric Key")
+		if key == "q":
+			return metrics
+		value = raw_input("Please enter value for " + key)
+		if value == 'q':
+			return metrics
+		metrics[key] = value
+		nextMetric = raw_input("Continue? y/n/q")
+	return metrics
+
+
 
 
 #takes pictures, returns aws key for file
@@ -51,27 +105,6 @@ def generateFilename():
 
 
 
-##################SERVER LOGIC
-
-def serverInit():
-    
-
-def shutdownServer():
-    saveDB()
-
-
-def recStatus(status):
-    prevStatus += 1
-    DATABASE = status
-
-
-def getLastStatus():
-    status = DATABASE[str(prevStatus)]
-    return status
-    
-
-def getStatus(id):
-    return DATABASE[id]
 
 ##########################DB OPERATIONS#################################
 
@@ -105,6 +138,4 @@ def saveDB():
 
 
 init()
-loadDB()
-sleep(5)
-shutdownServer()
+
