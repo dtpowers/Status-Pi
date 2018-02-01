@@ -41,7 +41,7 @@ def takeStatus():
     #populate with data
     metrics = getMetrics()
     time = datetime.datetime.now()
-    metrics['Time'] = time.strftime("%A, %B %-m %Y, %-I:%M %p")
+    metrics['Time'] = time.strftime("%A, %B %-d %Y, %-I:%M %p")
     
 
     #take picture, upload, get picture name
