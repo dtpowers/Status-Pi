@@ -9,6 +9,7 @@ import pprint
 
 
 
+
 def init():
 	print("initializing PiCam.")
 	global camera
