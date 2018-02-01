@@ -20,6 +20,7 @@ def init():
     print('Previous Status #: ' + str(mostRecentStatusID))
     #initialize camera object
     camera = PiCamera()
+    camera.resolution = (2592, 1944)
     print("Server initialized...")
     shutdown = input("If you want to take a status press anything other than q. To shutdown, press q")
     while shutdown != 'q':
