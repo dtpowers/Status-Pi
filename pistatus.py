@@ -58,19 +58,19 @@ def takeStatus():
 def getMetrics():
     metrics = {}
     doBase = input("do you want default metrics y/n")
-    if doBase != 'n' or doBase != 'q':
+    if (doBase != "n" or doBase != "q"):
         weight = input("Current weight?")
         sleep = input("how many hours of sleep did you get?")
     metrics['weight'] = weight    
     metrics['sleep'] = sleep
 
     nextMetric = input("Do you want to add any additional metrics? y/n")
-    while (nextMetric != 'q' or nextMetric != 'n'):
+    while (nextMetric != "q" or nextMetric != "n"):
         key = input("Please enter metric Key")
         if key == "q":
             return metrics
         value = input("Please enter value for " + key)
-        if value == 'q':
+        if value == "q":
             return metrics
         metrics[key] = value
         nextMetric = input("Continue? y/n/q")
