@@ -9,10 +9,10 @@ import pprint
 
 
 def init():
-	print("initializing PiCam.")
-	global camera
-	global mostRecentStatusID
-	global DATABASE
+    print("initializing PiCam.")
+    global camera
+    global mostRecentStatusID
+    global DATABASE
     global pp
     pp = pprint.PrettyPrinter(indent=4)
     DATABASE = loadDB()
