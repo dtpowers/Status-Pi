@@ -36,6 +36,7 @@ def shutdownServer():
 
 def takeStatus():
     #increase count and generate new entry
+    global mostRecentStatusID
     mostRecentStatusID += 1
     #populate with data
     metrics = getMetrics()
