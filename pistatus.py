@@ -61,8 +61,8 @@ def getMetrics():
     if (doBase != "n" and doBase != "q"):
         weight = input("Current weight?")
         sleep = input("how many hours of sleep did you get?")
-    metrics['weight'] = weight    
-    metrics['sleep'] = sleep
+        metrics['weight'] = weight    
+        metrics['sleep'] = sleep
 
     nextMetric = input("Do you want to add any additional metrics? y/n")
     while (nextMetric != "q" and nextMetric != "n"):
