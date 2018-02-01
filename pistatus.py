@@ -21,10 +21,10 @@ def init():
     #initialize camera object
     camera = PiCamera()
     print("Server initialized...")
-    shutdown = raw_input("If you want to take a status press anything other than q. To shutdown, press q")
+    shutdown = input("If you want to take a status press anything other than q. To shutdown, press q")
     while shutdown != 'q':
         takeStatus()
-        shutdown = raw_input("If you want to take a status press anything other than q. To shutdown, press q")
+        shutdown = input("If you want to take a status press anything other than q. To shutdown, press q")
     #shutdown server
     shutdownServer()
     
@@ -36,7 +36,7 @@ def shutdownServer():
 
 def takeStatus():
     #increase count and generate new entry
-    mostRecentStatusID++
+    mostRecentStatusID += 1
     #populate with data
     metrics = getMetrics()
     time = datetime.datetime.now()
@@ -56,23 +56,23 @@ def takeStatus():
 #ask user for key/value pairs for metrics
 def getMetrics():
     metrics = {}
-    doBase = raw_input("do you want default metrics y/n")
+    doBase = input("do you want default metrics y/n")
     if doBase != 'n' or doBase != 'q':
-        weight = raw_input("Current weight?")
-        sleep = raw_input("how many hours of sleep did you get?")
+        weight = input("Current weight?")
+        sleep = input("how many hours of sleep did you get?")
     metrics['weight'] = weight    
     metrics['sleep'] = sleep
 
-    nextMetric = raw_input("Do you want to add any additional metrics? y/n")
+    nextMetric = input("Do you want to add any additional metrics? y/n")
     while (nextMetric != 'q' or nextMetric != 'n'):
-        key = raw_input("Please enter metric Key")
+        key = input("Please enter metric Key")
         if key == "q":
             return metrics
-        value = raw_input("Please enter value for " + key)
+        value = input("Please enter value for " + key)
         if value == 'q':
             return metrics
         metrics[key] = value
-        nextMetric = raw_input("Continue? y/n/q")
+        nextMetric = input("Continue? y/n/q")
     return metrics
 
 
